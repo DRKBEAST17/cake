@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="receipt-container">
+    <div class="receipt-header">
+        <h2>Sales Receipt</h2>
+        <div class="receipt-logo">🎂</div>
+    </div>
+
+    <div class="receipt-content">
+        <div class="receipt-info">
+            <p><strong>Receipt No:</strong> #{{ sale.id }}</p>
+            <p><strong>Date:</strong> {{ sale.date }}</p>
+        </div>
+
+        <div class="receipt-customer">
+            <h3>Customer Details</h3>
+            <p><strong>Name:</strong> {{ sale.customer_name }}</p>
+            <p><strong>Phone:</strong> {{ sale.customer_phone }}</p>
+            {% if sale.customer_email %}
+            <p><strong>Email:</strong> {{ sale.customer_email }}</p>
+            {% endif %}
+        </div>
+
+        <div class="receipt-items">
+            <table class="receipt-table">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Unit Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ sale.cake_name }}</td>
+                        <td>₹{{ "%.2f"|format(sale.unit_price) }}</td>
+                        <td>{{ sale.quantity }}</td>
+                        <td>₹{{ "%.2f"|format(sale.total) }}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr class="total-row">
+                        <td colspan="3">Total Amount</td>
+                        <td>₹{{ "%.2f"|format(sale.total) }}</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="receipt-footer">
+            <p>Thank you for your business!</p>
+            <p>MADE BY VIKASH SHARMA</p>
+            <div class="receipt-actions">
+                <button onclick="window.print()" class="print-btn">Print Receipt</button>
+                <a href="{{ url_for('sales') }}" class="back-btn">Back to Sales</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

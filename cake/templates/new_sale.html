@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="sales-form-container">
+    <div class="sales-form-header">
+        <h2>New Sale</h2>
+        <p class="subtitle">Create a new sales record</p>
+    </div>
+    
+    <form method="POST" class="sales-form">
+        <div class="form-group">
+            <label for="cake_id">Cake Selection</label>
+            <div class="select-wrapper">
+                <select id="cake_id" name="cake_id" required>
+                    <option value="" disabled selected>Choose a cake</option>
+                    {% for cake in cakes %}
+                    <option value="{{ cake[0] }}">
+                        {{ cake[1] }} | Price: ₹{{ cake[2] }} | Stock: {{ cake[3] }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="customer_id">Customer</label>
+            <div class="select-wrapper">
+                <select id="customer_id" name="customer_id" required>
+                    <option value="" disabled selected>Select customer</option>
+                    {% for customer in customers %}
+                    <option value="{{ customer[0] }}">{{ customer[1] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="quantity">Order Quantity</label>
+            <div class="quantity-input">
+                <input type="number" id="quantity" name="quantity" min="1" required>
+                <span class="unit">units</span>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="submit-btn">Complete Sale</button>
+            <a href="{{ url_for('sales') }}" class="cancel-btn">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

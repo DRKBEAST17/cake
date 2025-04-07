@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="welcome-section">
+    <h2>Welcome to Cake Wholesale Management</h2>
+    <div class="dashboard">
+        <div class="dashboard-item">
+            <h3>Quick Actions</h3>
+            <a href="{{ url_for('add_cake') }}" class="button">Add New Cake</a>
+            <a href="{{ url_for('new_sale') }}" class="button">Record Sale</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

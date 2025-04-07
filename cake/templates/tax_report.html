@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="content-section">
+    <h2>Tax Reports</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Month</th>
+                <th>Total Sales (₹)</th>
+                <th>GST (₹)</th>
+                <th>Total with Tax (₹)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for report in reports %}
+            <tr>
+                <td>{{ report[0] }}</td>
+                <td>{{ "%.2f"|format(report[1]) }}</td>
+                <td>{{ "%.2f"|format(report[2]) }}</td>
+                <td>{{ "%.2f"|format(report[3]) }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
